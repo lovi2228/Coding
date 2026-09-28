@@ -1,27 +1,28 @@
 class Solution {
 public:
-    bool check(int i,int j,string s){
-        while(i<j){
-            if(s[i]!=s[j]){
+    bool ans(int left,int right, string s){
+        while(left<right){
+            if(s[left]!=s[right]){
                 return false;
             }
-            i++;
-            j--;
+            left++;
+            right--;
         }
         return true;
     }
+
     bool validPalindrome(string s) {
         int left=0;
         int right=s.length()-1;
 
         while(left<right){
-            if(s[left]==s[right]){
-                left++;
-                right--;
-            }else{
-                return check(left+1,right,s) ||check(left,right-1,s);
+            if(s[left]!=s[right]){
+                return ans(left+1,right,s) || ans(left,right-1,s);
             }
+            left++;
+            right--;
         }
+
         return true;
     }
 };
